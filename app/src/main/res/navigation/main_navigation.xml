@@ -18,5 +18,10 @@
         android:id="@+id/wordFragment"
         android:name="com.example.kata.WordFragment"
         android:label="fragment_word"
-        tools:layout="@layout/fragment_word" />
+        tools:layout="@layout/fragment_word" >
+        <argument
+            android:name="MyWord"
+            app:argType="com.example.kata.MyWord"
+            app:nullable="true" />
+    </fragment>
 </navigation>

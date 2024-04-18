@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kata.databinding.FragmentWordBinding
 
@@ -24,9 +25,14 @@ class WordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val listWord = arguments?.getStringArrayList(AlphabetFragment.EXTRA_WORDS)
+        val myword = WordFragmentArgs.fromBundle(arguments as Bundle).myWord
 
-        val adapter = WordAdapter(listWord!!)
+        binding.tvTitle.text = "Words That Start With ${myword!!.alphabet}"
+        binding.btnBack.setOnClickListener {
+            view.findNavController().popBackStack()
+        }
+
+        val adapter = WordAdapter(myword.words)
 
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 

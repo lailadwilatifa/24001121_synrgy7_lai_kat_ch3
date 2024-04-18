@@ -24,9 +24,9 @@ class AlphabetAdapter(private val listWord: ArrayList<MyWord>)
     override fun onBindViewHolder(holder: AlphabetAdapter.ViewHolder, position: Int) {
         holder.btnAlphabet.text = listWord[position].alphabet
         holder.btnAlphabet.setOnClickListener {
-            val mBundle = Bundle()
-            mBundle.putStringArrayList(AlphabetFragment.EXTRA_WORDS, listWord[position].words)
-            it.findNavController().navigate(R.id.action_alphabetFragment_to_wordFragment, mBundle)
+            val action = AlphabetFragmentDirections.actionAlphabetFragmentToWordFragment(listWord[position])
+            action.myWord = listWord[position]
+            it.findNavController().navigate(action)
         }
     }
 
